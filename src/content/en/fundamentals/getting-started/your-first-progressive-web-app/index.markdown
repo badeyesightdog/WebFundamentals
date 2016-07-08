@@ -13,7 +13,7 @@ notes:
 ---
 
 <p class="intro">
-<a href="/web/progressive-web-apps">진보적인 웹앱</a> 은 최상의 웹과 최고의 앱을 통합한 경험이다. 이것은 설치가 요구되지 않으며 브라우저 탭을 통하여 맨 처음 방문한 사용자에게 유용하다. 사용자가 시간이 지나며 앱과 점진적인 관계를 이뤄가기 때문에, 점점 더 강력해 진다. 더 쉽게 로드되며, 심지어 좋지 않은 네트워크상황에서도 그러하며, 알맞은 알림을 내보내고, 홈 화면에선 아이콘을 가지고 있고 최상단으로 로드한다.(It loads quickly, even on flaky networks, sends relevant push notifications, has an icon on the home screen and loads as a top-level, full screen experience.)
+<a href="/web/progressive-web-apps">점진적인 웹앱</a> 은 최상의 웹과 최고의 앱을 통합한 경험이다. 이것은 설치가 요구되지 않으며 브라우저 탭을 통하여 맨 처음 방문한 사용자에게 유용하다. 사용자가 시간이 지나며 앱과 점진적인 관계를 이뤄가기 때문에, 점점 더 강력해 진다. 더 쉽게 로드되며, 심지어 좋지 않은 네트워크상황에서도 그러하며, 알맞은 알림을 내보내고, 홈 화면에선 아이콘을 가지고 있고 최상단으로 로드한다.(It loads quickly, even on flaky networks, sends relevant push notifications, has an icon on the home screen and loads as a top-level, full screen experience.)
 </p>
 
 {% include shared/toc.liquid %}
@@ -74,7 +74,7 @@ notes:
 * 오프라인에서도 앱이 동작하도록 만드는 법
 * 추후 오프라인 사용을 위해 데이터를 저장하는 법
 
-## 다줘진 주제들
+## 다뤄진 주제들
 
 <ol>
 {% for pageInSection in page.context.pages %}
@@ -86,11 +86,9 @@ notes:
 {% endfor %}
 </ol>
 
-## What you'll need
+## 필요로 할 것은
 
-* Chrome 47 or above
-* A knowledge of HTML, CSS and JavaScript
+* Chrome 47 or above 크롬 버전47 이상
+* HTML, CSS 와 JavaScript 지식
 
-This getting started guide is focused on Progressive Web Apps. Some concepts are 
-glossed over or code blocks (for example styles or non-relevant JavaScript) or
-are provided for you to simply copy and paste.
+이 시작하기 안내는 점진적인 웹앱을 목적으로 한 것이다. 어떤 개념들은 외관을 속이거나 (가령, 스타일 혹은 관련없는 자바스크립트 등의 )코드 덩어리가 당신이 쉽게 복사 후 붙여널기 할 수 있도록 제공될 것이다.
