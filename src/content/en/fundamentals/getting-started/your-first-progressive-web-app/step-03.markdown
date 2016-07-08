@@ -104,15 +104,12 @@ if (app.selectedCities) {
 }
 {% endhighlight %}
 
-마지막으로, 사용자가 추가: `app.saveSelectedCities();`를 사용하여 새로운 도시를 추가할 때, 이 도시 목록을 저장하는 것을 잊지말라. when the user adds a new one by 
- to the `butAddCity` event handler.
+마지막으로, `app.saveSelectedCities();`를 `butAddCity` 이벤트핸들러에 추가함으로써 사용자가 새로운 도시를 추가할 때, 이 도시 목록을 저장하는 것을 잊지말라.
 
-## Test it out
+## 시험해보기
 
-* When first run, your app should immediately show the user the forecast from 
-  `initialWeatherForecast`.
-* Add a new city and verify that two cards are shown.
-* Refresh the browser and verify that the app loads both forecasts and shows the 
-  latest information.
+* 처음 구동할 때, 당신의 앱은 `initialWeatherForecast`로 부터 예보를 즉시 사용자에게 보여주어야 한다.
+* 새로운 도시를 추가하고 두 개의 카드가 보이는 것을 확인하라.
+* 브라우저를 새로고침하고 앱이 두 예보를 불러오고 최신 정보를 보여주는 것을 확인하라.
 
-<a href="https://weather-pwa-sample.firebaseapp.com/step-05/" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Try it</a>
+<a href="https://weather-pwa-sample.firebaseapp.com/step-05/" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">시도하기</a>
