@@ -15,33 +15,26 @@ notes:
 ---
 
 <p class="intro">
-There are multiple ways to get started with any project, and we generally 
-recommend using Web Starter Kit. But, in this case, to keep our project as 
-simple as possible and concentrate on Progressive Web Apps, we've provided you 
-with all of the resources you'll need.
+어떤 프로젝트와도 바로 시작할 수 있는 방법에는 여러가지가 있고 일반적으론 웹스타터킷 사용을 권장한다. 그러나 지금의 경우엔, 우리의 프로젝트를 가능한 단순하게 유지하고 점진적인 웹앱에 집중하기 위하여 필요한 모든 자원을 제공한다.
 </p>
 
 {% include shared/toc.liquid %}
 
-## Download the code
+## 코드 다운로드
 
-You can [download all of the code for this progressive web app guide](pwa-weather.zip) in a
-ZIP file for easy use. Each step and all of the resources you need are
-available in the ZIP. 
+쉽게 사용할 수 있도록 zip 파일로 [이 점진적인 웹앱 안내를 위한 모든 코드 다운로드](pwa-weather.zip) 할 수 있다. 개별 단계와 필요한 모든 자원은 zip 안에서 이용가능하다.
 
-## Create the HTML for the App Shell
+## 앱셸을 위한 HTML 생성
 
-To make sure that we're starting as cleanly as possible, we'll start with a 
-brand new `index.html` file and add the core components we discussed in 
-[Architect the App Shell](step-01).
+가능한 깨끗하게 시작하기 위해 완전히 새로운 `index.html` 파일로 시작할 것이다. 그리고 [Architect the App Shell](step-01)에서 논의된 주요 요소를 추가할 것이다.
 
-Remember, the key components will consist of:
+기억하라, 핵심 요소들은 다음과 같이 구성될 것이다:
 
-* Header with a title, and add/refresh buttons
-* Container for forecast cards
-* A forecast card template
-* A dialog for adding new cities
-* A loading indicator 
+* 추가/갱신 버튼들과 제목이 있는 머릿말
+* 예보 카드들을 담는 컨테이너
+* 예보 카드 템플릿
+* 새 도시 추가를 위한 대화창
+* 로딩 표시기
 
 {% highlight html %}
 <!DOCTYPE html>
@@ -51,7 +44,7 @@ Remember, the key components will consist of:
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
-  <!-- Insert link to styles.css here -->
+  <!-- 이곳에 link to styles.css 삽입 -->
 </head>
 <body>
   <header class="header">
@@ -61,11 +54,11 @@ Remember, the key components will consist of:
   </header>
 
   <main class="main" hidden>
-    <!-- Insert forecast-card.html here -->
+    <!-- 이곳에 forecast-card.html 삽입 -->
   </main>
 
   <div class="dialog-container">
-    <!-- Insert add-new-city-dialog.html here -->
+    <!-- 이곳에 add-new-city-dialog.html 삽입 -->
   </div>
 
   <div class="loader">
@@ -74,84 +67,60 @@ Remember, the key components will consist of:
     </svg>
   </div>
 
-  <!-- Insert link to app.js here -->
+  <!-- 여기에 link to app.js 삽입 -->
 </body>
 </html>
 {% endhighlight %}
 
-Notice the `main` content is `hidden` by default and the loader is visible. This 
-ensures that the user sees the loader immediately as the page loads, giving them 
-a clear indication that the content is loading.
+기본적으로 `main` 내용이 숨겨지고`hidden` 로더는 볼 수 있음을 주의하라. 이것은 페이지가 로드되자마자 사용자가 로더를 볼 수 있게 하는 데, 이는 내용이 로딩되는 중이라는 것을 알리는 분명한 표시를 제공한다.
 
-Next, let's add the forecast card, and Add New City dialog. To save time, these 
-are provided in the `resources` directory, so you can simply copy and paste them 
-into the corresponding location.
+다음은, 예보 카드와 새 도시 추가 대화창을 추가해 보자. 시간을 절약하기 위해, 이것들은 `resources` 디렉토리에 제공되어서 상응하는 위치에 당신이 간단히 복사 후 붙여넣기할 수 있다.
 
-## Add styles to the core UI components
+## 주요 UI 요소에 스타일 적용
 
-It's now time to add the core styles. As part of our build and deployment 
-process, we'll want to inline these core styles into the document body, but for 
-now, let's put them into a separate CSS file.
+주요 스타일을 추가할 때다. 우리의 제작과 배치 과정중의 일부로서, 우린 문서 body 요소에 이 중심 스타일들을 inline으로 넣을 것이다. 그러나 지금은 분리된 CSS 파일에 넣어보자.
 
-In the `index.html` file, replace `<!-- Insert link to styles here -->` with: 
+`index.html` 파일에, `<!-- Insert link to styles here -->` 의 부분을 다음으로 교체하라: 
 {% highlight html %} 
 <link rel="stylesheet" type="text/css" href="styles/inline.css">
 {% endhighlight %}
 
-To save time, we've already created the 
-[stylesheet](https://weather-pwa-sample.firebaseapp.com/styles/inline.css) for 
-you to use. Take a few minutes to review it and customize it to make it more 
-your own.
+시간 절약을 위해, 당신이 사용할 [stylesheet](https://weather-pwa-sample.firebaseapp.com/styles/inline.css)를 미리 생성했다. 시간을 할애해서 이를 보고 당신만의 것으로 만들기 위해 좀 손을 보자.
 
 {% include shared/note.liquid list=page.notes.image-sprite %}
 
-## Test things out and make adjustments
+## 검사하고 조정하기
 
-Now is a great time to test things out, see how they look and make any 
-adjustments you want. Be sure to test the rendering of your forecast card by 
-removing the `hidden` attribute from the `main` container, and adding some fake data 
-to the card. 
+이제 검사할 시간이다, 어떻게 보이는지 보고 원하는 방식으로 조정해보자. `main` 컨테이너의 `hidden` 속성을 제거함으로써 예보 카드의 렌더링과 카드에 가짜 데이터를 추가해 봄으로써 확실히 검사하라.
 
 {% include shared/remember.liquid list=page.notes.give-you %}
 
-This app is reasonably responsive right now, but it's not perfect. Try adding 
-additional styles that will improve the responsiveness and make it really shine 
-across different devices. Also, consider what you can do to make it more your 
-own.
+현재 이 앱은 무리없이 반응적이나 완벽하진 않다. 반응성을 향상시키고 다른 기기등에서도 정말 빛나게 만들 추가 스타일을 더해보자. 또한 좀 더 당신만의 것처럼 만들 수 있는 게 무언지 고려해 보라.
 
-## Add the key JavaScript bootstrap code
+## 핵심 자바스크립트 부트스트랩 방식의 코드 추가
 
-Now that we have most of the UI ready, it's time to start hooking up the code to 
-make everything work. Like the rest of the app shell, be conscious about what 
-code is necessary as part of the key experience and what can be loaded later. 
+대부분의 UI가 준비되었으니, 모든 것이 동작하도록 만들기 위한 코드를 연결하기 시작할 때이다. 앱셸의 나머지와 같이, 핵심 경험의 일부로서 어떤 코드가 필요하고 어떤 게 나중에 로드되어야 할 지 알고 있어야 한다.
 
-In our bootstrap code, we've included:
+우리의 부트스트랩 코드에서 다음을 포함하였다:
 
-* An `app` object that contains some of the key information necessary for the app.
-* The event listeners for all of the buttons in the header (`add`/`refresh`) and in 
-  the add city dialog (`add`/`cancel`).
-* A method to add or update forecast cards (`app.updateForecastCard`).
-* A method to get the latest weather forecast data from the Firebase Public 
-  Weather API (`app.getForecast`).
-* A method to iterate the current cards and call `app.getForecast` to get the 
-  latest forecast data (`app.updateForecasts`).
-* Some fake data (`fakeForecast`) you can use to quickly test how things render.
+* 앱에 필요한 어떤 핵심 정보를 포함하는 어떤 `app` 객체.
+* 머릿말안(`add`/`refresh`)과 도시 추가 대화창안(`add`/`cancel`)의 모든 버튼에 관련된 이벤트리스너들.
+* 예보 카드들을 추가하고 갱신하는 메소드 (`app.updateForecastCard`).
+* Firebase Public Weather API에서 최신 날씨 예보 데이터를 가져오는 메소드 (`app.getForecast`).
+* 현재 카드를 반복하고 최신 예보 데이터를 얻기 위해 `app.getForecast`를 호출하는 메소드 (`app.updateForecasts`).
+* 어떻게 렌더링되는 지 빨리 검사하기 위해 사용할 수 있는 어떤 가짜 데이터 (`fakeForecast`).
 
-Add the JavaScript code
+자바스크립트 코드를 추가하라
 
-1. Copy `step3-app.js` from the `resources` directory to your `scripts` folder
-   and rename it `app.js`
-1. In the `index.html` file, add a link to the newly created `app.js`.<br/>
+1. `resources`디렉토리에서 `step3-app.js`를 복사해서 당신의 `scripts` 폴더로 옮기고 `app.js`라고 이름을 수정한다.
+1. `index.html` 파일에서, 새로 생성된 `app.js`로 연결되는 링크를 추가하라.<br/>
    `<script src="/scripts/app.js"></script>`
 
-## Test it out
+## 시험해보기
 
-Now that you've added the core HTML, styles and JavaScript, it's time to test the 
-app. While it may not do much yet, make sure it doesn't write errors to the
-console.
+주요 HTML, 스타일과 자바스크립트를 추가했으니, 이제 앱을 시험해 볼 시간이다. 아직 그리 많진 않을 테지만, 콘솔에 오류가 나오지 않도록 주의하라.
 
-To see how the fake weather data is rendered, add the line below to your `app.js` 
-file:  
+가짜 날씨 데이터가 어떻게 렌더링되는지 보기 위해, 당신의 `app.js` 파일 아래에 다음을 추가하라:  
 `app.updateForecastCard(fakeForecast);`
 
-<a href="https://weather-pwa-sample.firebaseapp.com/step-04/" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Try it</a>
+<a href="https://weather-pwa-sample.firebaseapp.com/step-04/" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">시도하기</a>
