@@ -85,8 +85,7 @@ app.saveSelectedCities = function() {
  *   로컬저장소localStorage 는 동시발생의 API 이고 심각한 성능 영향을
  *   가지고 있다. 제품 앱의 경우엔 사용되면 안된다!
  *   대신에, IDB (https://www.npmjs.com/package/idb) 혹은
- *   SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c)
- *   를 확인해보라.
+ *   SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c) 를 확인해보라.
  *
  ****************************************************************************/
 
