@@ -13,22 +13,16 @@ notes:
 ---
 
 <p class="intro">
-Progressive Web Apps should start fast and be usable immediately. In its 
-current state, our Weather App starts quickly, but it's not useable. There's no 
-data. We could make an AJAX request to get that data, but that results in an 
-extra request and makes the initial load longer. Instead, provide real data in 
-the first load.
+점진적인 웹앱은 빠르게 시작하고 즉시 사용가능해야 한다. 현재 상태에서 우리의 날씨앱은 빠르게 시작하지만 사용가능하진 않다. 데이터가 없다. 우린 데이터를 얻기 위해 AJAX 요청을 만들 수 있으나 그것은 추가 요청을 발생시키고 초기 로딩을 더 길게 만든다. 대신에, 첫 로딩에 실제 데이터를 제공하라.
 </p>
 
 {% include shared/toc.liquid %}
 
-## Inject the weather forecast data
+## 날씨 예보 데이터 주사
 
-For this code lab, we'll statically inject a weather forecast, but in a 
-production app, the latest weather forecast data would be injected by the server 
-based on the IP address geolocation of the user. 
+이 코드 실험을 위하여, 우린 정적으로 날씨 예보를 주사할 것이나 제품 단계 앱에서는 사용자 IP 주소의 지리적 위치에 근거한 서버에 의해 최신의 날씨 예보 데이터가 주사될 것이다.
 
-Add the following inside the immediately invoked function expression:
+즉시 호출되는 함수 표현의 안에 다음을 추가하라:
 
 {% highlight javascript %}  
 var initialWeatherForecast = {  
@@ -59,50 +53,40 @@ var initialWeatherForecast = {
 };
 {% endhighlight %}
 
-Next, remove the `fakeForecast` data that we created earlier for testing as we 
-won't be using it any more.
+다음으로, 이제 더이상은 사용하지 않을 것이기 때문에 테스트를 위해 이전에 생성한 `fakeForecast` 데이터를 제거하라.
 
-## Differentiating the first run
+## 첫 구동 구별하기
 
-But, how do we know when to display this information, which may not be relevant 
-on future loads when the weather app is pulled from the cache? When the user 
-loads the app on subsequent visits, they may have changed cities, so we need to 
-load the information for those cities, not necessarily the first city they ever 
-looked up.
+그런데 우리가 이 정보(날씨앱이 캐시로부터 데이터를 가져올 때 미래 로딩에 적당하지 않을)를 표시할 때를 어떻게 알 수 있나? 사용자가 그 이후의 방문에 앱을 로드할 때, 그들이 도시를 변경했을 수도 있어서 우린 해당 도시들에 대한 정보를 불러올 필요가 있다; 단지 필연적으로 사용자가 전에 찾아본 본 첫 도시가 아니라 말이다.
 
-User preferences, like the list of cities a user has subscribed to, should be 
-stored locally using IndexedDB or other fast storage mechanism. To simplify this 
-sample as much as possible, we've used `localStorage`, which is not ideal for 
-production apps because it is a blocking, synchronous storage mechanism that is 
-potentially very slow on some devices.
+사용자 선호, 사용자가 구독한 도시 목록과 같은 것은 IndexedDB 혹은 다른 빠른 저장방법을 사용하여 로컬에 저장되어야 한다. 이 예를 가능한 단순히 하기 위해, `localStorage` 를 사용했다; 제품 단계 앱에 대해선 이상적이지 않은 방법으로 그 이유는 이것이 차단적이고 동기적인 저장방법(어떤 기기에선 잠재적으로 매우 느린)이기 때문이다.
 
 {% include shared/note.liquid list=page.notes.extra-credit %}
 
-First, let's add the code required to save user preferences within `app.js`:  
+우선, 사용자 선로를 저장하기 위해 요구되는 코드를 `app.js` 내부에 추가해보자. :  
 
 {% highlight javascript %}
-// Save list of cities to localStorage, see note below about localStorage.
+// 로컬저장소에 도시 목록 저장, 로컬저장소에 대해 아래의 노트를 보자.
 app.saveSelectedCities = function() {
   var selectedCities = JSON.stringify(app.selectedCities);
-  // IMPORTANT: See notes about use of localStorage.
+  // 중요: 로컬저장소의 사용에 대한 노트를 보라.
   localStorage.selectedCities = selectedCities;
 };
 {% endhighlight %}
 
-Next, let's add the startup code to check if the user has any subscribed cities 
-and render those, or use the injected data. Add the following code to your 
-`app.js`:  
+다음엔, 사용자가 어떤 구독한 도시들이 있는 지 확인하고 있다면 렌더링하기 위한 시작 코드를 추가하고 아니라면 주사된 데이터를 사용하자. 다음의 코드를 당신의 `app.js`에 추가하라:  
 
 {% highlight javascript %}
 /****************************************************************************   
  *
- * Code required to start the app
+ * 앱을 시작하기 위해 요구되는 코드
  *
- * NOTE: To simplify this getting started guide, we've used localStorage.
- *   localStorage is a synchronous API and has serious performance
- *   implications. It should not be used in production applications!
- *   Instead, check out IDB (https://www.npmjs.com/package/idb) or
+ * 주의: 이 시작하기 안내를 간단히 하기 위해, 우린 로컬저장소를 사용했다.
+ *   로컬저장소localStorage 는 동시발생의 API 이고 심각한 성능 영향을
+ *   가지고 있다. 제품 앱의 경우엔 사용되면 안된다!
+ *   대신에, IDB (https://www.npmjs.com/package/idb) 혹은
  *   SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c)
+ *   를 확인해보라.
  *
  ****************************************************************************/
 
@@ -121,8 +105,8 @@ if (app.selectedCities) {
 }
 {% endhighlight %}
 
-Finally, don't forget to save the list of cities when the user adds a new one by 
-adding: `app.saveSelectedCities();` to the `butAddCity` event handler.
+마지막으로, 사용자가 추가: `app.saveSelectedCities();`를 사용하여 새로운 도시를 추가할 때, 이 도시 목록을 저장하는 것을 잊지말라. when the user adds a new one by 
+ to the `butAddCity` event handler.
 
 ## Test it out
 
