@@ -17,20 +17,14 @@ notes:
 ---
 
 <p class="intro">
-Progressive Web Apps have to be fast, and installable, which means that they 
-work online, offline, or on intermittent, slow connections. To achieve 
-this, we need to cache our app shell using a service worker so that it's 
-always available quickly and reliably. 
+점진적인 웹앱은 빠르고 설치가능해야 한다. 이것은 온라인, 오프라인 혹은 간헐적으로 연결되거나 느린 연결에서도 동작하는 것을 의미한다. 이것을 달성하기 위해선, service worker 를 사용하여 언제나 빠르고 신뢰할 수 있도록 우리의 앱셸을 캐시저장할 필요가 있다.
 </p>
 
 {% include shared/toc.liquid %}
 
-If you're unfamiliar with service workers, you can get a basic 
-understanding by reading [Introduction To Service 
-Workers](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) 
-about what they can do, how their lifecycle works and more.
+당신이 service worker 에 익숙치 않다면, 그것이 무엇을 할 수 있고 그들의 생애주기가 어떻게 동작하는 지와 그 밖의 것들에 대해 [Introduction To Service  Workers](http://www.html5rocks.com/en/tutorials/service-worker/introduction/)을 읽고 기본 개념을 익힐 수 있을 것이다.
 
-Features provided via service workers should be considered a progressive 
+service worker를 통해 제공되는 특징들은 점진적인 향상으로 간주되어야 한다. 그리고 브라우저에 의해 지원될때에만 추가되어야 한다. Features provided via service workers should be considered a progressive 
 enhancement, and added only if supported by the browser. For example, with 
 service workers you can cache the app shell and data for your app, so that it's 
 available even when the network isn't. When service workers aren't supported, 
